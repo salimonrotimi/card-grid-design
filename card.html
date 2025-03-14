@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS Card Design</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="main.js" defer></script>
+</head>
+
+<body>
+    <!-- The header and the footer are styled as "sticky" i.e. they remain fixed while the page scrolls -->
+    <header>
+        <section class="header-title-line">
+            <h2>Object Profile</h2>
+            <!-- Dynamically adds the three bar menu button -->
+            <button class="menu-button">
+                <div class="menu-icon"></div>
+            </button>
+        </section>
+        <nav>
+            <ul>
+                <!-- The "href" points to the "id" section of the "article" tag in the "main" tag-->
+                <li><a href="#object1">Beads</a></li>
+                <li><a href="#object2">Flower</a></li>
+                <li><a href="#object3">Keyboard</a></li>
+                <li><a href="#object4">Plan</a></li>
+                <li><a href="#object5">Synergy</a></li>
+                <li><a href="#our-menu">Our Menu</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main id="main-container">
+        <article id="object1" class="card">
+            <figure>
+                <img src="image/coronavirus-beads.jpg" alt="covid-19 beads" width="500" height="500" />
+                <figcaption>Coronavirus beads</figcaption>
+            </figure>
+            <p><q>Sample covid-19 beads.</q></p>
+        </article>
+        <article id="object2" class="card">
+            <figure>
+                <img src="image/flower.jpg" alt="beautiful flower" width="500" height="500" />
+                <figcaption>A beautiful flower</figcaption>
+            </figure>
+            <p><q>A beauty to behold.</q></p>
+        </article>
+        <article id="object3" class="card">
+            <figure>
+                <img src="image/keyboard.jpg" alt="keyboard image" width="500" height="500" />
+                <figcaption>Windows <span class="nowrap">device keyboard</span></figcaption>
+            </figure>
+            <p><q>An input device.</q></p>
+        </article>
+        <article id="object4" class="card">
+            <figure>
+                <img src="image/plan.jpg" alt="plan appropriately" width="500" height="500" />
+                <figcaption>Plan well</figcaption>
+            </figure>
+            <p><q>The need to plan.</q></p>
+        </article>
+        <article id="object5" class="card">
+            <figure>
+                <img src="image/synergy.jpg" alt="ideal synergy" width="500" height="500" />
+                <figcaption>Synergy at work</figcaption>
+            </figure>
+            <p><q>The power of synergy.</q></p>
+        </article>
+    </main>
+    <main id="our-menu">
+        <!-- main__article refers to an Element. It uses Block Element Modifier (BEM} system of naming in CSS. -->
+        <!-- Block is the root container e.g. main. Element depends on Block and is named with 2 underscores -->
+        <!-- Modifier is used for adding addtional changes to an element ot block. It is named with 2 hyphens -->
+        <article>
+            <h2>Our food menu per plate</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th class="menu__header" scope="col">Food</th>
+                        <th class="menu__header" scope="col">Quantity</th>
+                        <th class="menu__header" scope="col">Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- First categorry -->
+                    <tr>
+                        <th class="menu__item menu__cr" scope="row" rowspan="3">Swallow</th>
+                        <td class="menu__item">1</td>
+                        <td class="menu__item">$1.50</td>
+                    </tr>
+                    <tr>
+                        <td class="menu__item">2</td>
+                        <td class="menu__item">$2.50</td>
+                    </tr>
+                    <tr>
+                        <td class="menu__item">3</td>
+                        <td class="menu__item">$3.50</td>
+                    </tr>
+                    <!-- Second Category -->
+                    <tr>
+                        <th class="menu__item menu__sf" scope="row" rowspan="3">Noodles</th>
+                        <td class="menu__item">1</td>
+                        <td class="menu__item">$2.00</td>
+                    </tr>
+                    <tr>
+                        <td class="menu__item">2</td>
+                        <td class="menu__item">$3.50</td>
+                    </tr>
+                    <tr>
+                        <td class="menu__item">3</td>
+                        <td class="menu__item">$4.50</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td class="menu__item menu__cpsa" colspan="3">Hotdog &amp; Shawarma $2</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </article>
+        <span class="move-up">
+            <a href="#main-container">Back to top</a>
+        </span>
+    </main>
+    <footer>
+        <h3>&COPY;<span id="publish-year"></span> Shield Inc.</h3>
+    </footer>
+</body>
+
+</html>

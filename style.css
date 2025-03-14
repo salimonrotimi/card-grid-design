@@ -1,0 +1,594 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito&display=swap");
+html {
+    scroll-behavior: smooth;
+    /* enable smooth scrolling from the button click to the select item */
+}
+
+
+/* Reset all elements */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* Approach for declaring a variable that will be reused */
+
+:root {
+    --REPEATED-COLOR: white;
+    --SMOKY-WHITE: whitesmoke;
+}
+
+
+/* Approach for declaring a variable that will be reused when the system setting is in dark mode */
+
+@media (prefers-color-scheme: dark) {
+     :root {
+        --REPEATED-COLOR: rgb(199, 194, 194);
+        --SMOKY-WHITE: rgb(235, 228, 228);
+    }
+}
+
+body {
+    font: 1.5rem "Nunito", san-serif;
+    min-height: 100vh;
+    background-color: #475569;
+    background-image: radial-gradient(var(--SMOKY-WHITE), #475569);
+    display: flex;
+    flex-direction: column;
+}
+
+.nowrap {
+    white-space: nowrap;
+    /* prevents movement of part of the text items separated by spaces to the next line or row if the re#main-containweing space on the devise screen can no longer contain them */
+}
+
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+header,
+footer {
+    position: sticky;
+    /* the tag content re#main-containwes in a fixed poistion based on where they appear in the html document while the other content of the page scrolls */
+    background-color: #1e293b;
+    color: var(--SMOKY-WHITE);
+    text-align: center;
+}
+
+header {
+    top: 0;
+}
+
+footer {
+    bottom: 0;
+}
+
+
+/* for the "section" tag that contains the "h2" tag and the "button" tag */
+
+.header-title-line {
+    padding: 0.25rem 0.5rem;
+    display: flex;
+    flex-flow: row nowrap;
+    /* Flex-flow is a combination of flex-direction and flex-wrap. It moves part of the items to the next line or row if the re#main-containweing space on the devise screen can no longer contain them */
+    justify-content: space-between;
+}
+
+h2,
+h3 {
+    margin: 10px 0;
+    /* 10px top & bottom, 0px left& right*/
+}
+
+
+/* for the "button" tag that holds the "div" tag for drawing the menu-icon */
+
+.menu-button {
+    background-color: transparent;
+    /* removes the normal button color */
+    border: none;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    /* The "relative" position will be referenced by the .menu-icon with position: absolute*/
+}
+
+
+/* for the "div" tag inside the "button" tag which is used for drawing the menu-icon three bars */
+
+.menu-icon,
+.menu-icon::before,
+.menu-icon::after {
+    background-color: var(--SMOKY-WHITE);
+    width: 40px;
+    height: 5px;
+    border-radius: 5px;
+    position: absolute;
+    transition: all 0.5s;
+    /* adds transition demo to the three drawn menu bar. The menu-bar are placed on top of each other */
+}
+
+
+/* create an empty "content" for the .menu-icon having the two pseudo classes. The empty content is what  will be transitioned to later to make them visible. */
+
+.menu-icon::before,
+.menu-icon::after {
+    content: "";
+}
+
+
+/* Transition to the empty content to create the top bar*/
+
+.menu-icon::before {
+    transform: translate(-20px, -12px);
+}
+
+
+/* Transition to the empty content to create the top bar*/
+
+.menu-icon::after {
+    transform: translate(-20px, 12px);
+}
+
+
+/* applied on the middle "menu-icon" bar made with the div tag that is inside a "header" tag when the header tag is hovered and focused-within*/
+
+header:hover .menu-icon,
+header:focus-within .menu-icon {
+    background-color: transparent;
+}
+
+
+/* applied on the top "menu-icon" bar made with the div tag that is inside a "header" tag when the header tag is hovered and focused-within. The bar bends to form a forward slash "/" symbol. */
+
+header:hover .menu-icon::before,
+header:focus-within .menu-icon::before {
+    transform: translateX(-20px) rotate(45deg);
+}
+
+
+/* applied on the bottom "menu-icon" bar made with the div tag that is inside a "header" tag when the header tag is hovered and focused-within. The bar bends to form a backward slash "\" symbol which crosses the forward slash symbol produced above to form a cancel symbol "X" */
+
+header:hover .menu-icon::after,
+header:focus-within .menu-icon::after {
+    transform: translateX(-20px) rotate(-45deg);
+}
+
+
+/* applied on the top "nav" tag that is inside a "header" tag when the header tag is hovered and focused-within. */
+
+header:hover nav,
+header:focus-within nav {
+    display: block;
+}
+
+nav {
+    display: none;
+    background-color: #1e293b;
+    transform-origin: top center;
+    animation: ShowMenu 0.5s ease-in-out forwards;
+}
+
+@keyframes ShowMenu {
+    0% {
+        transform: scaleY(0);
+    }
+    80% {
+        transform: scaleY(1.2);
+    }
+    100% {
+        transform: scaleY(1);
+    }
+}
+
+
+/* applied on the "ul" tag that is inside a "nav" tag */
+
+nav ul {
+    list-style-type: none;
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+
+/* applied on any "li" tag that is inside a "nav" tag */
+
+nav li {
+    padding: 0.5rem;
+    border-top: 1px solid var(--SMOKY-WHITE);
+}
+
+nav li:hover,
+nav li:focus {
+    transform: scaleX(1.4);
+    transition: all 0.3s;
+}
+
+
+/* applied on any "a" tag that is inside a "nav" tag */
+
+nav a {
+    color: var(--REPEATED-COLOR);
+    width: 200%;
+    margin: auto;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav a:hover,
+nav a:focus {
+    color: rgb(152, 218, 242);
+}
+
+
+/* #main-container is the container that holds all the articles*/
+
+#main-container {
+    padding: 1rem;
+    flex-grow: 1;
+    /* The flex card can grow up to the full size of the container */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    /* gap between different group of items (e.g. the article tags) in a flex direction */
+}
+
+
+/* It is applied on each of the article tags that has the class "card" */
+
+.card {
+    scroll-margin-top: 8rem;
+    width: min(100%, 350px);
+    /* Can grow to 100% width of the container but don't grow beyond 350px */
+    background-color: #cbd5e1;
+    border: 2px solid black;
+    border-radius: 15px;
+    padding: 1rem;
+    /* for adding a space between the image and the black borderline */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+/* applied on whichever "card" class is the target of a selection once a link is clicked */
+
+.card:target {
+    border: 4px solid rebeccapurple
+}
+
+
+/* uses the :nth-child() pseudo class to apply the background color to even-number positioned card. 
+    other pseudo classes are :first-child and :last-child */
+
+.card:nth-child(even) {
+    background-color: papayawhip;
+}
+
+
+/* ONLY FOR USERS WHO WANTS ANIMATION IN THEIR DEVICE SYSTEM SETTINGS */
+
+@media (prefers-reduced-motion: no-preference) {
+    /* Adds animation to the even-numbered card positions */
+    .card:nth-child(even):hover {
+        background-color: midnightblue;
+        transform: rotate(360deg) translateX(20%);
+        transition-property: background-color, transform;
+        /* applies the transition using the specified "background-color" and the "tranform" property */
+        transition-duration: 2s, 5s;
+        transition-timing-function: ease-in-out;
+        /* can be ease, linear, ease-in, ease-out */
+        /* for 2 seconds to 5 seconds */
+        transition-delay: 0.5s;
+    }
+    /* The following code performs the same animation as the above code using the "transition" shorthand 
+        .card:nth-child(even):hover {
+            background-color: midnightblue;
+            transform: rotate(360deg) translateX(20%);
+            transition: all 2s, 5s ease-in-out 0.5s;   // property (all), duration, timing-function, delay
+        }
+    */
+    .card:first-child:hover {
+        /* animation: name duration timing-function delay iteration-count direction fill-mode;
+        name i.e. any particular name e.g. Card-slide
+        duration i.e. any value e.g. 2s
+        timing_function e.g. linear, ease (the default value), ease-in, ease-in-out
+        delay i.e. any value e.g. 0.5s
+        iteration_count e.g. infinite, 50, 100, etc.
+        direction e.g. reverse, alternate-reverse, alternate, normal
+        fill-mode e.g backwards (the default value), forwards.
+    */
+        animation: Card-slide 5s ease-in-out 1s 5 alternate forwards;
+    }
+    .card:last-child:hover {
+        /* animation: name duration timing-function delay iteration-count direction fill-mode; */
+        animation: Card-translate 5s ease 0.5s 10 normal backwards
+    }
+}
+
+
+/* The animation name "Card-slide" is further defined here using "@keyframes" */
+
+@keyframes Card-slide {
+    0% {
+        transform: translateX(0);
+    }
+    33% {
+        transform: translateX(400px) rotate(180deg);
+    }
+    66% {
+        transform: translateX(-300px) rotate(-180deg);
+    }
+    100% {
+        transform: translateX(0);
+        background-color: rebeccapurple;
+        /* the color that is changed to during the animation*/
+    }
+}
+
+@keyframes Card-translate {
+    from {
+        transform: translateX(-20%);
+    }
+    to {
+        transform: translateX(100%);
+        background-color: aqua;
+    }
+}
+
+
+/* applied on any "figure" tag that is inside a tag that has the "card" class */
+
+.card figure {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+
+/* applied on any "image" tag positioned inside a tag that has the "card" class */
+
+.card img {
+    border: 8px double #475569;
+    border-radius: 50%;
+    object-fit: cover;
+    /* "object-fit" is optional in this case as it doesn't affect the output */
+}
+
+.card figcaption {
+    font-weight: bolder;
+    font-size: 2rem;
+    margin: 1rem;
+    text-align: center;
+}
+
+
+/* USING GRID TO STYLE TABLE */
+
+
+/* The "main" container with id="our-menu" which holds all the contents */
+
+#our-menu {
+    padding: 1rem;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: normal;
+}
+
+#our-menu h2 {
+    color: rgb(13, 56, 13);
+    display: flex;
+    justify-content: center;
+}
+
+
+/* The table inside the "main" where the grid dislay is applied */
+
+#our-menu table {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* 3 columns 1 fragment unit each*/
+    grid-template-areas: "hd1 hd2 hd3" "cr cr1q cr1p" "cr cr2q cr2p" "cr cr3q cr3p" "sf sf1q sf1p" "sf sf2q sf2p" "sf sf3q sf3p" "cpsa cpsa cpsa";
+    /* cr refers to "crunchy" and it was repeated 3 times because it has a rowspan of 3 in the html file. Same with sf */
+    gap: 0.3em;
+    background-color: #2a3545;
+    margin-bottom: 1em;
+    border-radius: 20px;
+}
+
+
+/* Displays only the content of each tag without considering the tag itself */
+
+thead,
+tbody,
+tr,
+tfoot {
+    display: contents;
+}
+
+.menu__cr {
+    grid-area: cr;
+}
+
+.menu__sf {
+    grid-area: sf;
+}
+
+.menu__cpsa {
+    grid-area: cpsa;
+    font-weight: bold;
+    color: #475569;
+}
+
+.menu__cr,
+.menu__sf,
+.menu__cpsa,
+.menu__header {
+    color: #1d2127;
+    font-weight: bold;
+    height: 100%;
+    display: grid;
+    place-content: center;
+}
+
+.menu__header {
+    color: white;
+    /* overwrites the previously defined color #1d2127; */
+}
+
+.menu__header,
+.menu__item {
+    width: 100%;
+    font-size: 1rem;
+    padding: 1em;
+    border: medium ridge black;
+}
+
+.menu__item {
+    display: grid;
+    place-content: center;
+    background-color: white;
+}
+
+thead th:first-child {
+    border-top-left-radius: 20px;
+}
+
+thead th:last-child {
+    border-top-right-radius: 20px;
+}
+
+tfoot td {
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 20px;
+}
+
+#our-menu span {
+    padding: 5px;
+    border-radius: 5px;
+    width: 40%;
+    background-color: papayawhip;
+    display: inline-block;
+    margin: 20px auto;
+    text-align: center;
+    box-shadow: 0 4px 5px 4px rgba(0, 0, 0, 0.5);
+    /* x-offset, y-offset, blur-radius, spread-radius, color */
+}
+
+span a {
+    color: black;
+    text-decoration: none;
+}
+
+
+/* The styles above are for very small screen. Bigger screens are styled below using "screen and min-width".
+  
+However if a bigger screen is style first, then the smaller screens are styled using "screen and max-width".
+*/
+
+@media screen and (min-width: 576px) {
+    /* Continue using the previous styles and include this changes for screen size 576px and above */
+    #main-container {
+        justify-content: center;
+        flex-flow: row wrap;
+        /* wrap overflowing card to the next line */
+        padding: 1rem;
+    }
+    .card {
+        width: min(100%, 400px);
+    }
+    .card:last-child {
+        order: -1;
+        /* Select the last element of the card to become first */
+    }
+    #our-menu span {
+        width: 25%;
+    }
+}
+
+@media screen and (min-width: 726px) {
+    /* Continue using the previous styles and include this changes for screen size 726px and above */
+    .header-title-line {
+        justify-content: center;
+        /* Changes the justify-content from "space-between" declared previously to "center" */
+    }
+    .menu-button {
+        display: none;
+        /* Removes the button by changing the display from "flex" declared previously to "none" */
+    }
+    nav {
+        animation: none;
+        display: inline;
+        /* Changes the display from "none" declared previously to "inline" */
+    }
+    nav ul {
+        flex-flow: row nowrap;
+        /* changes the flex-flow from "column nowrap" declared previously to "row nowrap" */
+        justify-content: space-evenly;
+    }
+    /* applied on any "li" tag that is inside a "nav" tag */
+    nav li {
+        border-top: none;
+        /* removes the border-top that was declared previously. */
+    }
+    /* applied on any "a" tag that is inside a "nav" tag */
+    nav a {
+        color: var(--REPEATED-COLOR);
+        width: 200%;
+    }
+    .card {
+        width: min(100%, 325px);
+    }
+    .card figure {
+        flex-flow: column-reverse;
+        /* reverses the column direction of the contents in the figure tag such that the image become placed at the middle */
+    }
+    .card p {
+        margin-top: 1rem;
+    }
+    .menu__header,
+    .menu__item {
+        font-size: 1.5rem;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    /* Continue using the previous styles and include this changes for screen size 992px and above */
+    .card {
+        width: min(100%, 400px);
+    }
+    .card:nth-child(2) {
+        order: -1;
+        /* Select the even number positioned element of the card to become first */
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    /* Continue using the previous styles and include this changes for screen size 1200px and above */
+    .card {
+        width: min(calc(33% - 1rem), 500px);
+        /* calc(33% - 1rem) is the same as using 100% */
+    }
+}
+
+
+/* MOBILE DEVICE LANDSCAPE */
+
+@media screen and (max-height: 425px) and (min-aspect-ratio: 7/4) {
+    body {
+        background-color: dodgerblue;
+        background-image: radial-gradient(white, dodgerblue);
+    }
+    h2,
+    h3 {
+        font-size: 1.5rem;
+    }
+}
